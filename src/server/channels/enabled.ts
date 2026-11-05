@@ -19,7 +19,7 @@ import { isChannel, type Channel } from "@/lib/channels";
  * son inertes, y a cambio todas las instancias tienen la misma estructura.
  */
 
-/** WhatsApp no se puede apagar: es el canal por el que existe el producto. */
+/** WhatsApp se conserva como canal disponible en todas las instalaciones. */
 const ALWAYS_ON: Channel = "whatsapp";
 
 export function parseChannels(raw: string | undefined): Set<Channel> {

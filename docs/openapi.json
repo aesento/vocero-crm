@@ -242,7 +242,7 @@
     "schemas": {
       "Error": { "type": "object", "required": ["error"], "properties": { "error": { "type": "object", "required": ["code", "message"], "properties": { "code": { "type": "string" }, "message": { "type": "string" } } } } },
       "Ok": { "type": "object", "properties": { "ok": { "type": "boolean" } } },
-      "Canal": { "type": "string", "description": "Informativo: la lista crece. No hagas un switch exhaustivo.", "examples": ["whatsapp", "instagram", "messenger", "tiktok"] },
+      "Canal": { "type": "string", "description": "Informativo: la lista crece. No hagas un switch exhaustivo.", "examples": ["whatsapp", "instagram", "messenger", "tiktok", "webchat"] },
       "Contexto": {
         "type": "object",
         "properties": {

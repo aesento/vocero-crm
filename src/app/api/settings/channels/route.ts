@@ -13,13 +13,14 @@ export const dynamic = "force-dynamic";
 
 /** Sin ningún canal social encendido esta superficie no existe (ADR-001). */
 const haySociales = () => ZERNIO_CHANNELS.some((c) => isChannelEnabled(c));
+const hayCanalesOpcionales = () => haySociales() || isChannelEnabled("webchat");
 
 /**
  * 023 — Estado de los canales: conexión, última entrada y, con Zernio, la
  * salud de la cuenta y del webhook. Ni la llave ni el secreto salen de aquí.
  */
 export const GET = withAuth(async (session) => {
-  if (!haySociales()) return channelDisabledResponse();
+  if (!hayCanalesOpcionales()) return channelDisabledResponse();
   return Response.json({
     channels: await channelsStatus(session.organizationId),
     canManage: session.role === "owner",

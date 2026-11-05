@@ -105,6 +105,7 @@ export function settingsSections({
   instagram = false,
   messenger = false,
   tiktok = false,
+  webchat = false,
 }: {
   agenda?: boolean;
   /** 016 — "Anuncios" existe solo con la bandera ATRIBUCION. */
@@ -115,17 +116,19 @@ export function settingsSections({
   messenger?: boolean;
   /** 022 — "TikTok", igual: solo con el canal en CHANNELS. */
   tiktok?: boolean;
+  webchat?: boolean;
 }): SettingsSection[] {
   const canales: SettingsLink[] = [];
   // 023 — "Estado" reúne todos los canales; con WhatsApp solo no aporta nada
   // que su pantalla no diga, así que no existe (ADR-001).
-  if (instagram || messenger || tiktok) {
+  if (instagram || messenger || tiktok || webchat) {
     canales.push({ href: "/settings/channels", label: "Estado" });
   }
   canales.push({ href: "/settings/whatsapp", label: "WhatsApp" });
   if (instagram) canales.push({ href: "/settings/instagram", label: "Instagram" });
   if (messenger) canales.push({ href: "/settings/messenger", label: "Messenger" });
   if (tiktok) canales.push({ href: "/settings/tiktok", label: "TikTok" });
+  if (webchat) canales.push({ href: "/settings/webchat", label: "Chat web" });
 
   // #85 — el proveedor de IA se configura aquí; el entorno queda de respaldo.
   const agente: SettingsLink[] = [{ href: "/settings/ai", label: "IA" }];

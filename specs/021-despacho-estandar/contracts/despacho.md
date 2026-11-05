@@ -110,7 +110,8 @@ byte. La prueba gemela vive en el repo del cerebro.
 
 Notas que son contrato:
 
-- **`channel`** es `whatsapp`, `instagram`, `messenger` o `tiktok` (022), y
+- **`channel`** es `whatsapp`, `instagram`, `messenger`, `tiktok` (022) o
+  `webchat` (067), y
   la lista crecerá.
   Trátalo como informativo (tono, límite de longitud), no hagas un `switch`
   exhaustivo.

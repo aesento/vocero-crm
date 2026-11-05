@@ -32,7 +32,7 @@ export const envSchema = z.object({
   OPENROUTER_MODEL: z.string().optional(),
   OPENROUTER_JUDGE_MODEL: z.string().optional(),
   // 014/017: canales encendidos, separados por coma. WhatsApp siempre esta on.
-  // Ej.: CHANNELS=whatsapp,instagram,messenger. Sin ella, la instancia es solo
+  // Ej.: CHANNELS=whatsapp,instagram,messenger,webchat. Sin ella, la instancia es solo
   // WhatsApp y las superficies de los demas canales responden 404.
   CHANNELS: z.string().optional(),
   // 015: motor de agenda. Apagado por defecto — sin el, toda la superficie de

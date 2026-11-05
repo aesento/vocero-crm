@@ -9,7 +9,7 @@
  * mintiendo.
  */
 
-export type Channel = "whatsapp" | "instagram" | "messenger" | "tiktok";
+export type Channel = "whatsapp" | "instagram" | "messenger" | "tiktok" | "webchat";
 
 /**
  * Orden en que los canales se presentan al operador. WhatsApp primero: es el
@@ -19,6 +19,7 @@ export const CHANNEL_ORDER: readonly Channel[] = [
   "whatsapp",
   "instagram",
   "messenger",
+  "webchat",
   "tiktok",
 ];
 
@@ -31,6 +32,7 @@ export const CHANNEL_LABEL: Record<Channel, string> = {
   messenger: "Messenger",
   // 022: los mensajes directos de una cuenta TikTok Business, por Zernio.
   tiktok: "TikTok",
+  webchat: "Chat web",
 };
 
 /**

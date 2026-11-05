@@ -40,7 +40,7 @@ import {
  */
 
 export const ZERNIO_CHANNELS = CHANNEL_ORDER.filter(
-  (c): c is ZernioChannel => c !== "whatsapp"
+  (c): c is ZernioChannel => c !== "whatsapp" && c !== "webchat"
 );
 
 /** Segmento de la ruta del webhook de cada canal. */

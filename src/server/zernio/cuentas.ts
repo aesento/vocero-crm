@@ -16,7 +16,7 @@ import { zernioFetch } from "@/server/zernio";
  */
 
 /** Los canales que llegan por Zernio. */
-export type ZernioChannel = Exclude<Channel, "whatsapp">;
+export type ZernioChannel = Exclude<Channel, "whatsapp" | "webchat">;
 
 /** Cómo llama Zernio a la plataforma de cada canal. */
 export const ZERNIO_PLATFORMS: Record<ZernioChannel, readonly string[]> = {

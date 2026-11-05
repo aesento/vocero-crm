@@ -568,7 +568,7 @@ del cliente se conecta con el **override de callback por WABA**:
 > Graph** (botón "Sincronizar" en Configuración → Plantillas), así el modo
 > agencia ve las aprobaciones igual.
 
-## Canales opcionales: Instagram, Messenger y TikTok
+## Canales opcionales: Instagram, Messenger, TikTok y Chat web
 
 WhatsApp es el canal por el que existe Vocero y siempre está encendido. Los
 demás viajan en el mismo código, **apagados por defecto** ([ADR-001](docs/adr-001-canales-opcionales.md)):
@@ -576,8 +576,15 @@ una instancia que no los usa no ve pantallas, webhooks ni variables suyas.
 Se encienden con una variable de despliegue:
 
 ```bash
-CHANNELS=whatsapp,instagram,messenger,tiktok   # los que quieras; whatsapp siempre va
+CHANNELS=whatsapp,instagram,messenger,tiktok,webchat   # los que quieras; whatsapp siempre va
 ```
+
+`webchat` habilita una burbuja de texto para el sitio del negocio, sin cuenta de
+Meta. En **Configuración → Chat web** registra el origen HTTPS del sitio y copia
+el fragmento al final de su HTML. Los mensajes llegan a la misma Bandeja y el
+cerebro conectado puede responderlos; admite texto y conserva la conversación
+en la base de datos de esta instancia. Para una instalación solo web, puedes
+poner `CHANNELS=webchat`; WhatsApp sigue disponible en la instancia.
 
 Con más de un canal encendido, la Bandeja enseña el distintivo de cada
 conversación y permite filtrar por canal. El contacto, el pipeline, la ficha

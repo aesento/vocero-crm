@@ -24,6 +24,7 @@ import {
   type WebhookHealth,
   type ZernioWebhook,
 } from "@/server/zernio/webhooks";
+import { getWebchatByOrganization } from "@/server/webchat/config";
 
 /**
  * 023 — El estado de los canales de una organización, para Ajustes → Canales.
@@ -109,11 +110,12 @@ function saludDe(conn: ZernioConnection, lectura: Lectura): ChannelStatus["healt
 
 export async function channelsStatus(organizationId: string): Promise<ChannelStatus[]> {
   const encendidos = enabledChannels();
-  const [ultimos, wa, ig, fb, zernio] = await Promise.all([
+  const [ultimos, wa, ig, fb, webchat, zernio] = await Promise.all([
     lastInboundByChannel(organizationId),
     getCredentialsByOrg(organizationId),
     encendidos.has("instagram") ? getInstagramCredentialsByOrg(organizationId) : null,
     encendidos.has("messenger") ? getMessengerCredentialsByOrg(organizationId) : null,
+    encendidos.has("webchat") ? getWebchatByOrganization(organizationId) : null,
     zernioConnectionsOfOrg(organizationId),
   ]);
 
@@ -135,6 +137,18 @@ export async function channelsStatus(organizationId: string): Promise<ChannelSta
         source: wa ? "meta" : null,
         account: wa?.displayPhoneNumber ?? null,
         status: wa?.status ?? null,
+        health: null,
+      });
+      continue;
+    }
+
+    if (channel === "webchat") {
+      filas.push({
+        ...base,
+        connected: Boolean(webchat),
+        source: null,
+        account: webchat?.allowedOrigins.join(", ") ?? null,
+        status: null,
         health: null,
       });
       continue;

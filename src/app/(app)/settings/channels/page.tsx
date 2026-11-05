@@ -7,6 +7,6 @@ export const dynamic = "force-dynamic";
 
 export default function ChannelsSettingsPage() {
   // Con WhatsApp solo esta pantalla no existe en esta instancia (ADR-001).
-  if (!ZERNIO_CHANNELS.some((c) => isChannelEnabled(c))) notFound();
+  if (!ZERNIO_CHANNELS.some((c) => isChannelEnabled(c)) && !isChannelEnabled("webchat")) notFound();
   return <ChannelsClient />;
 }

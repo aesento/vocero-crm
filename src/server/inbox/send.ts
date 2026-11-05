@@ -97,6 +97,8 @@ type SendTarget = {
   messenger?: MessengerCredentials;
   /** 022: presente solo en conversaciones de TikTok. */
   tiktok?: TiktokCredentials;
+  /** Chat web: el envío queda guardado y el widget lo recoge por polling. */
+  webchat?: boolean;
   /**
    * 024: el envío sale con la etiqueta de agente humano. Lo decide el
    * pre-vuelo (`assertReplyWindow`), no cada canal por su cuenta.
@@ -163,6 +165,19 @@ async function prepareSend(
       "sandbox_violation",
       "Conversación de prueba del Laboratorio: el envío real está prohibido"
     );
+  }
+
+  if (row.conversation.channel === "webchat") {
+    if (!isChannelEnabled("webchat")) {
+      throw new SendError("not_connected", "El canal de Chat web está desactivado en esta instancia");
+    }
+    return {
+      conversation: row.conversation,
+      credentials: null,
+      destinatario: { to: row.contact.waIdentity },
+      recipient: row.contact.waIdentity,
+      webchat: true,
+    };
   }
 
   // 014: Instagram tiene su propio transporte, su propia ventana y NO tiene
@@ -490,7 +505,9 @@ export async function sendText(input: {
 
   const cita = await resolverMensajeCitado(target, input.replyToMessageId);
 
-  const waMessageId = target.instagram
+  const waMessageId = target.webchat
+    ? null
+    : target.instagram
     ? await callInstagramSend(target, text)
     : target.messenger
       ? await callMessengerSend(target, text)

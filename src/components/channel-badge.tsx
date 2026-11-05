@@ -42,6 +42,10 @@ const MARK: Record<Channel, { path: string; tile: string }> = {
   },
   // 022: el negro del icono de TikTok, con el glifo en blanco como los demás.
   tiktok: { path: TIKTOK_PATH, tile: "bg-[#010101]" },
+  webchat: {
+    path: "M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z",
+    tile: "bg-primary",
+  },
 };
 
 /**

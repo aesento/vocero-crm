@@ -148,6 +148,20 @@ export const CHANNEL_CAPABILITIES: Record<Channel, ChannelCapabilities> = {
     deliveryReceipts: false,
     quoteReplies: false,
   },
+  webchat: {
+    label: CHANNEL_LABEL.webchat,
+    windowMs: null,
+    outsideWindow: "none",
+    humanAgentWindowMs: null,
+    textFormat: "plain",
+    maxTextBytes: null,
+    maxTextChars: 4000,
+    maxOutboundPerWindow: null,
+    outboundMedia: false,
+    structuredMessages: false,
+    deliveryReceipts: false,
+    quoteReplies: false,
+  },
 };
 
 /**

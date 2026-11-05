@@ -47,6 +47,7 @@ const SETTINGS_HREF: Record<Channel, string> = {
   instagram: "/settings/instagram",
   messenger: "/settings/messenger",
   tiktok: "/settings/tiktok",
+  webchat: "/settings/webchat",
 };
 
 const DOT: Record<Level, string> = {
@@ -201,8 +202,7 @@ export function ChannelsClient() {
                     {r.account ?? "Sin nombre"}
                     {r.channel !== "whatsapp" && (
                       <span className="text-text-2">
-                        {" "}
-                        · {r.source === "zernio" ? "por Zernio" : "app propia de Meta"}
+                        {" "}· {r.channel === "webchat" ? "widget web" : r.source === "zernio" ? "por Zernio" : "app propia de Meta"}
                       </span>
                     )}
                   </dd>

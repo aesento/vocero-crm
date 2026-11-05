@@ -16,7 +16,7 @@ import { createHmac, timingSafeEqual } from "node:crypto";
  * ediciones. La única diferencia está en `mediaId`, y se explica abajo.
  */
 
-export type CanalDelEvento = "whatsapp" | "instagram" | "messenger" | "tiktok";
+export type CanalDelEvento = "whatsapp" | "instagram" | "messenger" | "tiktok" | "webchat";
 
 export type MensajeDelEvento = {
   id: string;
